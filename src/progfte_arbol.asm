@@ -1,0 +1,105 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+    RESULT DW ?
+    BUFFER DB 6 DUP('$')
+
+.CODE
+START:
+    MOV AX, @DATA
+    MOV DS, AX
+
+    CALL CALCULAR
+
+    MOV AX, RESULT
+    CALL MOSTRAR
+
+    MOV AH, 4CH
+    INT 21H
+
+CALCULAR PROC
+    MOV AX, 8
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    MUL BX
+    PUSH AX
+    MOV AX, 4
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    MUL BX
+    PUSH AX
+    MOV AX, 2
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    ADD AX, BX
+    PUSH AX
+    MOV AX, 5
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP BX
+    POP AX
+    PUSH AX
+    POP AX
+    MOV RESULT, AX
+    RET
+CALCULAR ENDP
+
+MOSTRAR PROC
+    MOV CX, 0
+    MOV BX, 10
+CONVERTIR_LOOP:
+    XOR DX, DX
+    DIV BX
+    PUSH DX
+    INC CX
+    CMP AX, 0
+    JNE CONVERTIR_LOOP
+MOSTRAR_LOOP:
+    POP DX
+    ADD DL, '0'
+    MOV AH, 02H
+    INT 21H
+    LOOP MOSTRAR_LOOP
+    RET
+MOSTRAR ENDP
+
+END START
