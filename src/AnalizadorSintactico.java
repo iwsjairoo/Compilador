@@ -25,6 +25,22 @@ public class AnalizadorSintactico {
             this.resultado = resultado;
         }
 
+        public String getOperador() {
+            return operador;
+        }
+
+        public String getArgumento1() {
+            return argumento1;
+        }
+
+        public String getArgumento2() {
+            return argumento2;
+        }
+
+        public String getResultado() {
+            return resultado;
+        }
+
         @Override
         public String toString() {
             return "(" + operador + ", " + argumento1 + ", " + argumento2 + ", " + resultado + ")";

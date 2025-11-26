@@ -4,7 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Compilador_c15318f6"
+        },
         {
             "type": "java",
             "name": "Current File",
@@ -16,8 +22,7 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "Compilador_e41c8e12",
-            //"args": ["--gui"]
+            "projectName": "Compilador_e41c8e12"
         }
     ]
 }

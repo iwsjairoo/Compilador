@@ -47,7 +47,7 @@ public class GeneradorArchivos {
         }
     }
 
-    public static void generarCodigoEnsamblador(Path filePath, List<String> polacaInversa) {
+    public static String construirCodigoEnsamblador(List<String> polacaInversa) {
         StringBuilder asm = new StringBuilder();
         asm.append(".MODEL SMALL\n");
         asm.append(".STACK 100H\n\n");
@@ -115,8 +115,13 @@ public class GeneradorArchivos {
         asm.append("MOSTRAR ENDP\n\n");
         asm.append("END START\n");
 
+        return asm.toString();
+    }
+
+    public static void generarCodigoEnsamblador(Path filePath, List<String> polacaInversa) {
+        String asm = construirCodigoEnsamblador(polacaInversa);
         try (FileWriter writer = new FileWriter(filePath.toFile())) {
-            writer.write(asm.toString());
+            writer.write(asm);
         } catch (IOException e) {
             System.out.println("Error al escribir el archivo de ensamblador en " + filePath + ": " + e.getMessage());
         }
